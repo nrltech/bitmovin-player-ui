@@ -49,7 +49,6 @@
     background-size: 7em;
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
   }
 
   &.#{$prefix}-on {
@@ -57,7 +56,13 @@
       animation: fade-in $animation-duration-short
         cubic-bezier(0.55, 0.055, 0.675, 0.19); // http://easings.net/de#easeInCubic
       transition: visibility 0s $animation-duration-short;
-      background-image: svg("assets/skin-modern/images/pause.svg");
+      display: none;
+      // only touch devices:
+      @media (hover: none) and (pointer: coarse) {
+        display: block;
+        background-image: svg("assets/skin-modern/images/pause.svg");
+      }
+
       .bmpui-controls-hidden & {
         animation: fade-out $animation-duration-short
           cubic-bezier(0.55, 0.055, 0.675, 0.19); // http://easings.net/de#easeInCubic
